@@ -33,6 +33,7 @@ export const Input = styled.TextInput.attrs({
   font-size: 16px;
   color: #333;
   background: #fff;
+  border: 2px solid ${props => (props.error ? '#ff7272' : '#fff')};
 `;
 
 export const Submit = styled.TouchableOpacity `
@@ -41,4 +42,11 @@ export const Submit = styled.TouchableOpacity `
   justify-content: center;
   border-radius: 4px;
   padding: 0 14px;
+`;
+
+export const List = styled.FlatList.attrs({
+  contentContainerStyle: { paddingHorizontal: 20 },
+  showsVerticalScrollIndicator: false,
+})`
+  margin-top: 20px;
 `;
