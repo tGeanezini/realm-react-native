@@ -15,21 +15,36 @@ import Repository from '../../components/Repository';
 import api from '../../services/api';
 import getRealm from '../../services/realm';
 
+import Sale from '../../components/Sale';
+
 export default function Main() {
   const [input, setInput] = useState('');
   const [error, setError] = useState(false);
   const [repositories, setRepositories] = useState([]);
 
+  const [sales, setSales] = useState([]);
+  let count = 0;
+
   useEffect(() => {
-    async function loadRepositories() {
+    // async function loadRepositories() {
+    //   const realm = await getRealm();
+
+    //   const data = realm.objects('Repository').sorted('stars', true);
+
+    //   setRepositories(data);
+    // }
+
+    // loadRepositories();
+
+    async function loadSales() {
       const realm = await getRealm();
 
-      const data = realm.objects('Repository').sorted('stars', true);
+      const data = realm.objects('Sale').sorted('madeAt', true);
 
-      setRepositories(data);
+      setSales(data);
     }
 
-    loadRepositories();
+    loadSales();
   }, []);
 
   async function saveRepository(repository) {
@@ -66,6 +81,34 @@ export default function Main() {
     }
   }
 
+  async function addSale() {
+    count++;
+
+    const date = Date.now();
+
+    const data = {
+      id: count,
+      total: 150.00,
+      madeAt: new Date(date),
+      isPaid: false,
+      installments: [
+        {
+          id: count,
+          total: 150.00,
+          dueAt: new Date(date),
+          isPaid: false,
+        }
+      ],
+      observation: 'Teste de interface',
+    };
+
+    const realm = await getRealm();
+
+    realm.write(() => {
+      realm.create('Sale', data, 'modified');
+    });
+  }
+
   async function handleRefreshRepository(repository) {
     const response = await api.get(`/repos/${repository.fullName}`);
 
@@ -76,7 +119,7 @@ export default function Main() {
 
   return (
     <Container>
-      <Title>Repositórios</Title>
+      <Title>Vendas</Title>
 
       <Form>
         <Input
@@ -86,17 +129,18 @@ export default function Main() {
           autoCapitalize='none'
           autoCorrect={false}
           placeholder='Procurar repositório' />
-          <Submit onPress={handleAddRepository}>
+          <Submit onPress={addSale}>
             <Icon name='add' size={22} color='#0079db' />
           </Submit>
       </Form>
 
       <List
         keyboardShouldPersistTaps='handled'
-        data={repositories}
+        data={sales}
         keyExtractor={item => String(item.id)}
         renderItem={({item}) => (
-          <Repository data={item} onRefresh={() => handleRefreshRepository(item)}/>
+          <Sale data={item} />
+          // <Repository data={item} onRefresh={() => handleRefreshRepository(item)}/>
         )}
       />
     </Container>
