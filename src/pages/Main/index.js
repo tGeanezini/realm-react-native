@@ -82,7 +82,7 @@ export default function Main() {
         <Input
           value={input}
           error={error}
-          onChangeText={text => setInput(text)}
+          onChangeText={setInput}
           autoCapitalize='none'
           autoCorrect={false}
           placeholder='Procurar repositório' />
