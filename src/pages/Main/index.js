@@ -87,7 +87,7 @@ export default function Main() {
           autoCorrect={false}
           placeholder='Procurar repositório' />
           <Submit onPress={handleAddRepository}>
-            <Icon name='add' size={22} color='#fff' />
+            <Icon name='add' size={22} color='#0079db' />
           </Submit>
       </Form>
 

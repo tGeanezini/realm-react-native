@@ -40,11 +40,12 @@ export const StatCount = styled.Text`
 export const Refresh = styled.TouchableOpacity`
   margin-top: 20px;
   flex-direction: row;
+  align-items: center;
 `;
 
 export const RefreshText = styled.Text`
   font-size: 14px;
   font-weight: bold;
-  color: #7159c1;
+  color: #0079db;
   margin-left: 5px;
 `;
