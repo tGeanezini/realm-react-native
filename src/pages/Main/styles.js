@@ -38,10 +38,20 @@ export const Input = styled.TextInput.attrs({
 
 export const Submit = styled.TouchableOpacity `
   background: #fff;
-  margin-left: 10px;
   justify-content: center;
   border-radius: 4px;
   padding: 0 14px;
+  margin: 20px;
+  align-items: center;
+  flex-direction: row;
+  height: 48px;
+`;
+
+export const SubmitText = styled.Text `
+  font-size: 16px;
+  color: #0079db;
+  font-weight: bold;
+  margin-right: 8px;
 `;
 
 export const List = styled.FlatList.attrs({
