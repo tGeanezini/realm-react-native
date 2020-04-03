@@ -13,16 +13,23 @@ import {
   Status,
 } from './styles';
 
-export default function Sale({ data, showDetail }) {
+export default function Sale({ data, onDelete }) {
+  const total = Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(data.total);
+
+  const date = Intl.DateTimeFormat('pt-BR').format(data.madeAt);
+
   return (
     <Container>
       <Total>
         <Title>Valor</Title>
-        <Value>{data.total}</Value>
+        <Value>{total}</Value>
       </Total>
       <SaleDate>
         <Title>Data da venda</Title>
-        <Value>{data.madeAt.toDateString()}</Value>
+        <Value>{date}</Value>
       </SaleDate>
       <Installments>
         <Title>Número de Parcelas</Title>
@@ -33,9 +40,9 @@ export default function Sale({ data, showDetail }) {
         {data.isPaid ? <Value>PAGO</Value> : <Value>EM ABERTO</Value>}
       </Status>
 
-      <Details onPress={showDetail}>
-        <DetailsText>Ver detalhes</DetailsText>
-        <Icon name='arrow-right' color='#0079db' size={16} />
+      <Details onPress={onDelete}>
+        <DetailsText>Excluir</DetailsText>
+        <Icon name='trash' color='#ff4040' size={18} />
       </Details>
     </Container>
   )

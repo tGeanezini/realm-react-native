@@ -35,15 +35,15 @@ export default function Main() {
 
     const data = {
       id: uuid(),
-      total: 150.00,
+      total: 139.99,
       madeAt: new Date(date),
       isPaid: true,
       installments: [
         {
           id: uuid(),
-          total: 150.00,
+          total: 139.99,
           dueAt: new Date(date),
-          isPaid: false,
+          isPaid: true,
         },
       ],
       observation: 'Teste de interface',
@@ -56,6 +56,17 @@ export default function Main() {
     });
 
     return data;
+  }
+
+  async function deleteSale(data) {
+    const realm = await getRealm();
+
+    realm.write(() => {
+      let sale = realm.objects('Sale').filtered('id == "'+data.id+'"');
+      let installments = sale[0].installments;
+      realm.delete(installments);
+      realm.delete(sale);
+    });
   }
 
   return (
@@ -72,7 +83,7 @@ export default function Main() {
         data={sales}
         keyExtractor={item => String(item.id)}
         renderItem={({item}) => (
-          <Sale data={item} />
+          <Sale data={item} onDelete={() => deleteSale(item)}/>
         )}
       />
     </Container>

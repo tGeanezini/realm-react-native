@@ -20,7 +20,6 @@ export const Title = styled.Text`
 
 export const Value = styled.Text`
   color: #666;
-  line-height: 20px;
   margin-left: 8px;
   font-size: 18px;
 `;
@@ -32,15 +31,15 @@ export const SaleDate = styled.View`
 `;
 
 export const Details = styled.TouchableOpacity`
-  margin-top: 20px;
+  margin-top: 15px;
   flex-direction: row;
   align-items: center;
 `;
 
 export const DetailsText = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
-  color: #0079db;
+  color: #ff4040;
   margin-right: 5px;
 `;
 

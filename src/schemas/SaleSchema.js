@@ -3,7 +3,7 @@ export default class SaleSchema {
     name: 'Sale',
     primaryKey: 'id',
     properties: {
-      id: { type: 'string', indexed: true },
+      id: 'string',
       total: 'double',
       madeAt: 'date',
       isPaid: 'bool',

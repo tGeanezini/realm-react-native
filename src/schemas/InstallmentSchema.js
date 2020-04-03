@@ -3,7 +3,7 @@ export default class InstallmentSchema {
     name: 'Installment',
     primaryKey: 'id',
     properties: {
-      id: { type: 'string', indexed: true },
+      id: 'string',
       total: 'double',
       dueAt: 'date',
       isPaid: 'bool',
