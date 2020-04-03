@@ -9,7 +9,8 @@ import {
   SaleDate,
   Installments,
   Details,
-  DetailsText
+  DetailsText,
+  Status,
 } from './styles';
 
 export default function Sale({ data, showDetail }) {
@@ -27,6 +28,11 @@ export default function Sale({ data, showDetail }) {
         <Title>Número de Parcelas</Title>
         <Value>{data.installments.length}</Value>
       </Installments>
+      <Status>
+        <Title>Status</Title>
+        {data.isPaid ? <Value>PAGO</Value> : <Value>EM ABERTO</Value>}
+      </Status>
+
       <Details onPress={showDetail}>
         <DetailsText>Ver detalhes</DetailsText>
         <Icon name='arrow-right' color='#0079db' size={16} />

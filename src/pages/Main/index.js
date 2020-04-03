@@ -37,7 +37,7 @@ export default function Main() {
       id: uuid(),
       total: 150.00,
       madeAt: new Date(date),
-      isPaid: false,
+      isPaid: true,
       installments: [
         {
           id: uuid(),

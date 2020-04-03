@@ -9,7 +9,6 @@ export const Container = styled.View`
 
 export const Total = styled.View`
   flex-direction: row;
-  margin-top: 15px;
   align-items: center;
 `;
 
@@ -46,6 +45,12 @@ export const DetailsText = styled.Text`
 `;
 
 export const Installments = styled.View`
+flex-direction: row;
+margin-top: 15px;
+align-items: center;
+`;
+
+export const Status = styled.View`
 flex-direction: row;
 margin-top: 15px;
 align-items: center;
